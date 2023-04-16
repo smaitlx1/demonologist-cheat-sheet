@@ -1,20 +1,20 @@
 evi_color = {
     "EMF 5": "#db4d48",
-    "DOTs": "#2ccc29",
+    "ESG": "#2ccc29",
     "Fingerprints": "#ad8ce7",
     "Freezing": "#9ae0f7",
-    "Ghost Orbs": "#dbd993",
-    "Writing": "#4d8ce3",
+    "Ectoplasm": "#dbd993",
+    "Canvas": "#4d8ce3",
     "Spirit Box": "#d18c5e", 
 }
 
 evi_icons = {
     "EMF 5": "imgs/emf5-icon.png",
-    "DOTs": "imgs/dots-icon.png",
+    "ESG": "imgs/dots-icon.png",
     "Fingerprints": "imgs/fingerprints-icon.png",
     "Freezing": "imgs/freezing-icon.png",
-    "Ghost Orbs": "imgs/orbs-icon.png",
-    "Writing": "imgs/writing-icon.png",
+    "Ectoplasm": "imgs/orbs-icon.png",
+    "Easel": "imgs/writing-icon.png",
     "Spirit Box": "imgs/spirit-box-icon.png", 
 }
 
@@ -26,9 +26,9 @@ class Ghost {
             for (var j = 0; j < assets.length; j++){
                 var type = assets[j].toString().replace('{','').replace('}','').split(':')[0]
                 var resource_path = assets[j].toString().replace('{','').replace('}','').split(':')[1]
-                if (type == 'audio') {
-                    data.behavior[i] = data.behavior[i].replace(assets[j],` <span class="sound" onClick="playSound('${resource_path}')">&#128266;</span>`)
-                }
+                //if (type == 'audio') {
+                //    data.behavior[i] = data.behavior[i].replace(assets[j],` <span class="sound" onClick="playSound('${resource_path}')">&#128266;</span>`)
+                //}
             }
         }
 
@@ -49,7 +49,7 @@ class Ghost {
                     <div class="ghost_evidence_item" ${data.evidence[1] in evi_color ? 'style=\"color:' + evi_color[data.evidence[1]] + ' !important;\"' : ''}><img src="${evi_icons[data.evidence[1]]}">${data.evidence[1]}</div>
                     <div class="ghost_evidence_item" ${data.evidence[2] in evi_color ? 'style=\"color:' + evi_color[data.evidence[2]] + ' !important;\"' : ''}><img src="${evi_icons[data.evidence[2]]}">${data.evidence[2]}</div>
                 </div>
-                <div class="ghost_nightmare_evidence">${data.nightmare_evidence?data.nightmare_evidence:''}</div>
+                <!--<div class="ghost_nightmare_evidence">${data.nightmare_evidence?data.nightmare_evidence:''}</div>-->
                 <div class="ghost_behavior">
                    ${data.behavior.map(this.behavior).join('<hr>')}
                 </div>

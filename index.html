@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    <title>Unofficial Phasmophobia Cheat Sheet</title>
+    <title>Unofficial Demonologist Cheat Sheet</title>
     
     <link rel="icon" type="image/x-icon" href="imgs/favicon.ico">
     <meta name="viewport" content="user-scalable=no" />
@@ -20,7 +20,7 @@
 <body>
 
     <div id="blackout" style="display: none;">
-        <div id="info_box">
+        <div id="info_box" style="display: none;">
             <span class="icon" onclick="showInfo()"></span>
 
             <h3>Data Accuracy</h3>
@@ -50,87 +50,6 @@
         </div>
     </div>
 
-    <div id="settings_box" style="left:-32px;">
-        <div id="settings_tab" onclick="showSettings()">Settings<div id="settings_status"></div></div>
-        <span class="icon" onclick="showSettings()"></span>
-
-        <div class="settings_title yfont white">Settings</div>
-        <div class="info_block">
-            <div class="modifier_volume yfont white">Volume</div>
-            <input type="range" id="modifier_volume" name="volume" 
-                min="0" max="100" step="2" default="50" onchange="setVolume();saveSettings();">
-            <div class="modifier_volume_labels">
-                <div class="modifier_volume_label">0%</div>
-                <div class="modifier_volume_label">25%</div>
-                <div class="modifier_volume_label">50%</div>
-                <div class="modifier_volume_label">75%</div>
-                <div class="modifier_volume_label">100%</div>
-            </div>
-            <div class="modifier_note">(Change volume of footsteps)</div>
-            <hr>
-            <div class="modifier_volume yfont white">Speed Offset</div>
-            <div id="speed_offset">
-                <span id="minus_speed" class="speed_icon" onclick="adjustOffset(-1);setTempo();saveSettings();">-</span>
-                <span id="offset_value"> 0% </span>
-                <span id="minus_speed" class="speed_icon" onclick="adjustOffset(1);setTempo();saveSettings();">+</span></div>
-            <div class="modifier_note">(Adjust speed of footsteps)</div>
-            <hr>
-            <div class="modifier_volume yfont white">Speed Filter Logic</div>
-            <div class="speed_logic_select">
-                <span>OR</span>
-                <label for="speed_logic_type" onchange="filter();saveSettings();">
-                    <input type="checkbox" name="" id="speed_logic_type">
-                    <div class="toggle"></div>
-                </label>
-                <span>AND</span>
-            </div>
-            <hr>
-            <div class="modifier_volume yfont white">Shared Journal Link</div>
-            <div class="journal_link">
-                <input type="text" placeholder="XXXXXX" id="room_id" class="text">
-                <div class="journal_link_buttons">
-                    <button id="room_id_create" class="journal_link_button" onclick="create_room()">Create</button>
-                    <button id="room_id_link" class="journal_link_button" onclick="link_room()">Join</button>
-                    <button id="room_id_disconnect" class="journal_link_button" style="display: none;" onclick="disconnect_room()">Disconnect</button>
-                </div>
-            </div>
-            <div id="room_id_note" class="modifier_note">(STATUS: Not connected)</div>
-        </div>
-        <div id="session">-</div>
-    </div>
-
-    <div id="discord_link_box" style="left:-32px;">
-        <div id="discord_link_tab" onclick="showDiscordLink();getLink();">Discord Link<div id="discord_link_status"></div></div>
-        <span class="icon" onclick="showDiscordLink()"></span>
-        <div class="settings_title yfont white">Discord Link</div>
-        <div class="info_block">
-            <img id="discord_avatar" src="imgs/discord-mark-blue.png">
-            <div id="discord_name">Link your Discord</div>
-            <div id="discord_link_date" class="hidden"></div>
-            <div id="discord_stats" class="discord_note">Linking your Discord account will allow you to record what is input into this Cheat Sheet, allowing you to view statistics about ghosts, evidences, and play style!</div>
-            <div id="discord_note" class="discord_note grey">(1) Linking does not maintain an active connection to Discord, you will need to relink every 30 days or if you update your Discord profile. (2) Stats provided are purely from the use of this Cheat Sheet. We do not connect to the Phasmophobia game or Steam in any way.</div>
-            <div>
-                <a id="discord_link" href="https://discord.com/api/oauth2/authorize?client_id=1077230568422510602&redirect_uri=https%3A%2F%2Fzero-network.net%2Fanalytics%2Fdiscord-connect&response_type=code&scope=identify">
-                    <div id="discord_login_button">Link</div>
-                </a>
-                <div id="discord_unlink_button" class="hidden" onclick="discord_unlink()">Unlink</div>
-            </div>
-        </div>
-    </div>
-
-    <div id="event_box" style="left:-182px;">
-        <div id="event_tab" onclick="showEvent()">Current Event</div>
-        <span class="icon" onclick="showEvent()"></span>
-        <div class="settings_title yfont white">Current Event</div>
-        <div class="info_block">
-            <div id="event_title">No current events!</div>
-            <hr>
-            <div id="event_details">
-                Check back on the next update!
-            </div>
-        </div>
-    </div>
-
     <div id="wiki_box" style="left:-182px;">
         <div id="wiki_tab" onclick="showWiki();setFlicker();">Guides</div>
         <span class="icon" onclick="showWiki();setFlicker();"></span>
@@ -144,48 +63,21 @@
         <div class="evidence_title yfont white">
             Evidence <select name="num_evidence" id="num_evidence" class="num_evidence" onchange="filter();flashMode();saveSettings();">
                 <option value="3">3</option>
-                <option value="2">2</option>
+                <!--<option value="2">2</option>
                 <option value="1">1</option>
-                <option value="0">0</option>
+                <option value="0">0</option>-->
               </select>
         </div>
+        
         <div id="game_mode" class="yfont white" style="display:none;">Insanity</div>
-        <div id="evidence" class="evidence">
+        <div id="evidence" class="evidence" style="display:none;">
             <div class="dot-flashing"></div>
-        </div>
-
-        <div class="speed_title yfont white">
-            Speed
-        </div>
-        <div class="speed">
-            <button id="Slow" class="tricheck white" name="speed" onclick="dualstate(this)" value="Slow">
-                <div id="checkbox" class="neutral"><span class="icon"></span></div>
-                <div class="label">Slow</div>
-            </button>
-            <button id="Normal" class="tricheck white" name="speed" onclick="dualstate(this)" value="Normal">
-                <div id="checkbox" class="neutral"><span class="icon"></span></div>
-                <div class="label">Normal</div>
-            </button>
-            <button id="Fast" class="tricheck white" name="speed" onclick="dualstate(this)" value="Fast">
-                <div id="checkbox" class="neutral"><span class="icon"></span></div>
-                <div class="label">Fast</div>
-            </button>
         </div>
 
         <div class="modifier_title yfont white">
             Tools
         </div>
         <div class="modifier">
-            <div class="modifier_ghost_speed yfont white">Ghost Speed</div>
-            <input type="range" id="ghost_modifier_speed" name="volume" 
-                min="0" max="4" step="1" default="2" onchange="setTempo();saveSettings();send_state();">
-            <div class="modifier_ghost_speed_labels">
-                <div class="modifier_ghost_speed_label">50%</div>
-                <div class="modifier_ghost_speed_label">75%</div>
-                <div class="modifier_ghost_speed_label">100%</div>
-                <div class="modifier_ghost_speed_label">125%</div>
-                <div class="modifier_ghost_speed_label">150%</div>
-            </div>
             <div class="modifier_sound_select">
                 <img src="imgs/footsteps.png">
                 <label for="modifier_sound_type" onchange="setSoundType();saveSettings();">
@@ -195,31 +87,11 @@
                 <img src="imgs/metronome.png">
             </div>
             <div class="modifier_note">(Click &#128266; to hear speed)</div>
-            <hr>
-            <div class="modifier_smudge_timer yfont white" onclick="toggle_timer()">Smudge Timer</div>
-            <div class="line_labels" onclick="toggle_timer();send_timer();">
-                <div class="spirit_line_label">Spirit</div>
-                <div class="demon_line_label">Demon</div>
-            </div>
-            <div id="progress" onclick="toggle_timer();send_timer();">
-                <img src="imgs/play.png" id="play_button" class="play_button">
-                <div id="progressBar">
-                    <div id="progressBarInner" class="bar"></div>
-                    <div class="demon_line"></div>
-                    <div class="ghost_line"></div>
-                    <div class="spirit_line"></div>
-                </div>
-            </div>
-            <div id="time_left" onclick="toggle_timer();send_timer();">
-                <span id="minute">03</span>:<span id="second">00</span>
-            </div>
-            <div class="modifier_note_2" onclick="toggle_timer();send_timer();">(Press 't' to start/stop)</div>
         </div>
 
         <div id="cards" class="cards"><div class="dot-flashing"></div></div>
 
         <div id="active-users"><span id="current-version-label"></span> | <span id="active-users-label" onclick="showGlobe()">Active Users: -</span></div>
-        <div class="copyright" onclick="showInfo()"><img class="question" src="imgs/question.png"> Info / Copyright</div>
         <button id="reset" class="yfont" onclick="reset()">Reset</button>
         <div class="footer"></div>
 
@@ -233,40 +105,7 @@
         <canvas id="globe"></canvas>
     </div>
 
-    <div id="maps" style="display:none;">
-        <div class="maps_title yfont white">
-            Maps
-        </div>
-        <span class="icon" onclick="showMaps()"></span>
-        <div class="maps_image" onmouseenter="zoomMap(this)" onmouseleave="unZoomMap(this)" onmousemove="moveZoom(this,event)">
-            <div class="map_image"></div>
-            <div class="hover_zoom">+ Hover to zoom</div>
-        </div>
-        <div class="maps_credit">Map images belong to <a href="https://www.reddit.com/user/Fantismal" target="_blank">Fantismal</a> (<a href="https://imgur.com/a/iEI0tJo" target="_blank">Images</a>)</div>
-        <div class="maps_buttons">
-            <button class="maps_button selected_map" onclick="changeMap(this,'tanglewood.png')">6 Tanglewood Drive</button>
-            <button class="maps_button" onclick="changeMap(this,'edgefield.png')">42 Edgefield Road</button>
-            <button class="maps_button" onclick="changeMap(this,'ridgeview.png')">10 Ridgeview Court</button>
-            <button class="maps_button" onclick="changeMap(this,'grafton.png')">Grafton Farmhouse</button>
-            <button class="maps_button" onclick="changeMap(this,'willow.png')">13 Willow Street</button>
-            <button class="maps_button" onclick="changeMap(this,'brownstone.png')">Brownstone High School</button>
-            <button class="maps_button" onclick="changeMap(this,'bleasdale.png')">Bleasdale Farmhouse</button>
-            <button class="maps_button" onclick="changeMap(this,'sunnymeadows.png')">Sunny Meadows</button>
-            <button class="maps_button" onclick="changeMap(this,'sunnymeadows_courtyard.png')">SM Restricted - Courtyard</button>
-            <button class="maps_button" onclick="changeMap(this,'sunnymeadows_male.png')">SM Restricted - Male Wing</button>
-            <button class="maps_button" onclick="changeMap(this,'sunnymeadows_female.png')">SM Restricted - Female Wing</button>
-            <button class="maps_button" onclick="changeMap(this,'sunnymeadows_hospital.png')">SM Restricted - Hospital</button>
-            <button class="maps_button" onclick="changeMap(this,'sunnymeadows_restricted.png')">SM Restricted - Restricted</button>
-            <button class="maps_button" onclick="changeMap(this,'prison.png')">Prison</button>
-            <button class="maps_button" onclick="changeMap(this,'maplelodge.png')">Maple Lodge Campsite</button>
-            <button class="maps_button" onclick="changeMap(this,'woodwind.png')">Camp Woodwind</button>
-        </div>
-    </div>
-
-    <script src="scripts-v2/metronome.js"></script>
-    <script src="scripts-v2/timer-v1.js"></script>
     <script src="scripts-v2/geo-v1.js"></script>
-    <script src="discord-v2/discord-v2.js"></script>
     <script src="wiki-v2/wiki-v1.js"></script>
     <script src="scripts-v2/filter-v2.js"></script>
     <script src="events-v2/events.js"></script>

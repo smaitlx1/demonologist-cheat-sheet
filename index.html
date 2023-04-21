@@ -1,3 +1,4 @@
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Unofficial Demonologist Cheat Sheet</title>
@@ -27,7 +28,12 @@
     <div class="data">
         <div class="header"></div>
         <div class="evidence_title yfont white">
-            Evidence
+            Evidence <select name="num_evidence" id="num_evidence" class="num_evidence" onchange="filter();flashMode();saveSettings();" style="display: none;">
+                <option value="3">3</option>
+                <!--<option value="2">2</option>
+                <option value="1">1</option>
+                <option value="0">0</option>-->
+              </select>
         </div>
 		
         <div id="evidence" class="evidence">
@@ -73,3 +79,4 @@
     </script>
 
 </body>
+</html>

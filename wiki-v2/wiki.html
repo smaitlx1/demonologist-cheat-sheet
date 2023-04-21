@@ -1,29 +1,203 @@
-<div class="wiki_title">Hunts</div>
-<div class="wiki_details">
-    <hr>
-    <h3>Flickering</h3>
-    <div class="text">During a hunt, ghosts will flicker in and out of existance, alternating between visible and invisible multiple times every few seconds. There are a couple of ghosts that can be identified by their flickering during a hunt: (1) an Oni will be more visible during a hunt and (2) the Phantom will be invisible for longer periods of time.</div>
-    <div class="text">Below you can see examples of the flicker timing of Phantom, Oni, and all other ghosts.</div>
-    <div class="wiki-flex">
-        <div id="phantom-flicker" class="wiki-img-block">
-            <div id="flicker-ghost-name">Phantom</div>
-            <div id="ghost-flicker">
-                <img class="flicker-img" src="imgs/flicker_ghost.png">
-            </div>
-        </div>
-        <div id="normal-flicker" class="wiki-img-block">
-            <div id="flicker-ghost-name">Normal</div>
-            <div id="ghost-flicker">
-                <img class="flicker-img" src="imgs/flicker_ghost.png">
-            </div>
-        </div>
-        <div id="oni-flicker" class="wiki-img-block">
-            <div id="flicker-ghost-name">Oni</div>
-            <div id="ghost-flicker">
-                <img class="flicker-img" src="imgs/flicker_ghost.png">
-            </div>
-        </div>
-    </div>
-    <hr>
-    <div class="caption">(The 'Guides' section is an experimental feature that we will expand if more people like it. More data coming soon...)</div>
-</div>
+<script>
+	$(window).on('load', populateData())
+
+	function populateData() {
+		fetch("data/objectives.json", { signal: AbortSignal.timeout(2000) })
+			.then(wiki_data => wiki_data.json())
+			.then(wiki_data => {
+				var obj1 = document.getElementById("obj1")
+				var obj2 = document.getElementById("obj2")
+				var obj3 = document.getElementById("obj3")
+
+				for (var i = 0; i < wiki_data.objectives.length; i++) {
+					obj1.innerHTML += `<option value="objective">${wiki_data.objectives[i]}</option>`
+                    obj2.innerHTML += `<option value="objective">${wiki_data.objectives[i]}</option>`
+                    obj3.innerHTML += `<option value="objective">${wiki_data.objectives[i]}</option>`
+				}
+
+				var exorcisms = document.getElementById("exorcism")
+
+                for (var i = 0; i < wiki_data.exorcisms.length; i++) {
+                    exorcisms.innerHTML += `<option value="exorcism">${wiki_data.exorcisms[i]}</option>`
+				}
+			})
+	}
+</script>
+
+<div class="wiki_title yfont" style="width: 90%;">Research Binder</div>
+<div class="wiki_details" style="width: 90%;">
+	<hr />
+	<h3>Identity</h3>
+	<div class="text" style="width: 90%;">
+		<input type="text" placeholder="Name" style="width: 80%;" /><br />
+		<select name="socialPreference" id="socialPreference">
+			<option value="Alone">Responds Alone</option>
+			<option value="Group">Responds to Anyone</option>
+		</select>
+		<hr />
+		<h3>Sanity</h3>
+		<div class="text" style="width: 90%;">
+			<input type="text" placeholder="P1Name" style="width: 30px; border-bottom: 1px solid gray; border: none; background-color: #404040; color: white;" /> <input type="text" placeholder="P2Name" style="width: 30px; border-bottom: 1px solid gray; border: none; background-color: #404040; color: white;" /> <input type="text" placeholder="P3Name" style="width: 30px; border-bottom: 1px solid gray; border: none; background-color: #404040; color: white;" /> <input type="text" placeholder="P4Name" style="width: 30px; border-bottom: 1px solid gray; border: none; background-color: #404040; color: white;" /><br />
+			<input type="text" placeholder="P1" style="width: 30px;" /> <input type="text" placeholder="P2" style="width: 30px;" /> <input type="text" placeholder="P3" style="width: 30px;" /> <input type="text" placeholder="P4" style="width: 30px;" />
+		</div>
+		<hr />
+		<h3>Hunt Data</h3>
+		Has Hunted?
+		<select name="hasHunted" id="hasHunted" style="width: 20%; margin-left: 30px;">
+			<option value="No">No</option>
+			<option value="Yes">Yes</option>
+		</select>
+		<input type="text" placeholder="Lowest Sanity" style="width: 50px;" />
+		<div class="text" style="width: 90%;"><input type="text" placeholder="Sanity" style="width: 50px;" /> <input type="text" placeholder="Target" style="width: 50px;" /> <input type="text" placeholder="Speed" style="width: 50px;" /></div>
+		<hr />
+		<h3>Interactions</h3>
+		<div class="text" style="width: 90%;">
+			<input id="chkVoice" name="chkVoice" type="checkbox" value="Voice" /><label for="chkVoice">Speaks</label>
+			<input id="chkThrowing" name="chkThrowing" type="checkbox" value="Throwing" /><label for="chkThrowing">Throws Objects</label><br />
+			<input id="chkFurniture" name="chkFurniture" type="checkbox" value="Furniture" /><label for="chkFurniture">Moves Furniture</label>
+			<input id="chkFire" name="chkFire" type="checkbox" value="Fire" /><label for="chkFire">Fire</label><br />
+			<input id="chkLightsOn" name="chkLightsOn" type="checkbox" value="LightsOn" /><label for="chkLightsOn">Lights On</label>
+			<input id="chkLightsOff" name="chkLightsOff" type="checkbox" value="LightsOff" /><label for="chkLightsOff">Lights Off</label>
+		</div>
+		<hr />
+		<h3>Objectives</h3>
+		<div class="text" style="width: 90%;">
+			<select name="obj1" id="obj1" class="selectSmall">
+				<option value="Placeholder">Select Objective</option>
+			</select>
+			<select name="obj2" id="obj2" class="selectSmall">
+				<option value="Placeholder">Select Objective</option>
+			</select>
+			<select name="obj3" id="obj3" class="selectSmall">
+				<option value="Placeholder">Select Objective</option>
+			</select>
+		</div>
+		<hr />
+		<h3>Exorcism</h3>
+		<div class="text" style="width: 90%;" placeholder="Exorcism">
+			<select name="exorcism" id="exorcism" class="selectSmall">
+				<option value="Placeholder">Select Ritual</option>
+				<!-- <option value="FiveFingerRitual">Place 5 fingers in the basement ritual area</option>
+				<option value="SetClocks">Set the hanging clocks to the time the ghost died</option>
+				<option value="SaltGun">Exorcise with the salt gun</option> -->
+			</select>
+			<input type="text" id="exoNotes" placeholder="Exorcism Notes" style="width: 80%;" />
+		</div>
+		<hr />
+		<h3>Notes</h3>
+		<div class="text" style="width: 90%;">
+			<textarea id="txtNotes" style="width: 95%; height: 400px; margin: 10px;"></textarea>
+		</div>
+	</div>
+
+	<br />
+
+	<div class="wiki_title yfont" style="width: 90%;">Difficulties</div>
+	<div class="wiki_details" style="width: 90%;">
+		<hr />
+		<h3>Easy</h3>
+		<div class="text" style="width: 90%;">
+			<ul>
+				<li>3 evidence given</li>
+				<li>Sanity pills restore 40%</li>
+				<li>$2500 for perfect round on Hospital with 3 players</li>
+			</ul>
+		</div>
+
+		<h3>Medium</h3>
+		<div class="text" style="width: 90%;">
+			<ul>
+				<li class="ghost-note">3 evidence given</li>
+				<li>Sanity pills restore 30%</li>
+				<li>$5300 for perfect round on Hospital with 3 players</li>
+			</ul>
+		</div>
+		<h3>Hard</h3>
+		<div class="text" style="width: 90%;">
+			<ul>
+				<li>Sanity pills restore 20%</li>
+			</ul>
+		</div>
+	</div>
+
+	<br />
+
+	<div class="wiki_title yfont" style="width: 90%;">Evidence</div>
+	<hr />
+
+	<div class="wiki_details" style="width: 90%;">
+		Easel and ESG can be very difficult to get.  <span class="ghost-note">It has been suggested that an upcoming patch may address this.</span>
+	</div>
+	<div class="wiki_details" style="width: 90%;">
+		<hr />
+		<h3>Spirit Box Questions</h3>
+		<div class="text" style="width: 90%;">
+			<ul>
+				<li>Can you talk?</li>
+				<li>Can you speak?</li>
+				<li>What is your name?</li>
+				<li>Where are you?</li>
+				<li>When did you die?</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="wiki_title yfont" style="width: 90%;">Cursed Objects</div>
+	<div class="wiki_details" style="width: 90%;">
+		<hr />
+
+		<h3>Ouija Board</h3>
+		<div class="text" style="width: 90%;">
+			<ul>
+				<li>Are you here?</li>
+				<li>Where are you?</li>
+
+			</ul>
+		</div>
+
+		<h3>Tarot Cards</h3>
+		<div class="text" style="width: 90%;">
+			<table style="border: none; width: 70%; margin-left: 8px; margin-right: 5px; color: white;">
+				<tr>
+					<td class="yfont" style="font-size: 14pt; width: 100px;">Aggressive</td>
+					<td style="width: 200px;">Angers the ghost</td>
+				</tr>
+				<tr>
+					<td class="yfont" style="font-size: 14pt; width: 100px;">Angel</td>
+					<td style="width: 200px;">Revives a dead player, grants an achievement</td>
+				</tr>
+				<tr>
+					<td class="yfont" style="font-size: 14pt; width: 100px;">Death</td>
+					<td style="width: 200px;">Causes a hunt</td>
+				</tr>
+				<tr>
+					<td class="yfont" style="font-size: 14pt; width: 100px;">Devil</td>
+					<td style="width: 200px;">Increases activity</td>
+				</tr>
+				<tr>
+					<td class="yfont" style="font-size: 14pt; width: 100px;">Flame of Fate</td>
+					<td style="width: 200px;">Will raise or lower sanity depending on burn color.</td>
+				</tr>
+				<tr>
+					<td class="yfont" style="font-size: 14pt; width: 100px;">Gillotine</td>
+					<td style="width: 200px;">Kills the player</td>
+				</tr>
+				<tr>
+					<td class="yfont" style="font-size: 14pt; width: 100px;">Moon</td>
+					<td style="width: 200px;">Decreases sanity</td>
+				</tr>
+				<tr>
+					<td class="yfont" style="font-size: 14pt; width: 100px;">Slave</td>
+					<td style="width: 200px;">Traps the ghost</td>
+				</tr>
+				<tr>
+					<td class="yfont" style="font-size: 14pt; width: 100px;">Sun</td>
+					<td style="width: 200px;">Restores sanity</td>
+				</tr>
+				<tr>
+					<td class="yfont" style="font-size: 14pt; width: 100px;">Void</td>
+					<td style="width: 200px;">Causes an item to disappear</td>
+				</tr>
+			</table>
+		</div>
+	</div>

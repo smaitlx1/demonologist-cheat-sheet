@@ -1,0 +1,24 @@
+{
+  "objectives": [
+    "Boil dead rats in the cauldron",
+    "Collect blood bags",
+    "Collect salt bags",
+    "Collect ghost orbs",
+    "Find the gun parts",
+    "[ECTOPLASM GLASS] Find the old woman sitting in a chair",
+    "[ECTOPLASM GLASS] Find the time the ghost died",
+    "[CANDLE] Get the ghost to blow out a candle",
+    "Read the lost note",
+    "Stand on the pentagram until it's completely glowing",
+    "[PHOTO CAMERA] Take a photo of the ghost",
+    "Upload the data on the laptop"
+  ],
+
+  "exorcisms": [
+    "Locate 5 fingers and burn them in the basement",
+    "Set the hanging clocks to the time he ghost died",
+    "Shoot the ghost with the salt gun"
+  ],
+  
+  "dataRevision": "1"
+}

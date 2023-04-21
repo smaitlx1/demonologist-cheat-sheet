@@ -1,0 +1,257 @@
+{
+	"ghosts":[
+		
+		{
+			"ghost":"Abaddon",
+			"evidence":["Freezing","EMF 5","Spirit Box"],
+			"behavior":["Very aggressive when sanity is low","Afraid of crucifixes","Targets players who don't have crucifixes"],
+			"hunt_sanity": "???",
+			"speed": "normal"
+		},
+		{
+			"ghost":"Agash",
+			"evidence":["Freezing","Ectoplasm","Fingerprints"],
+			"behavior":["Faster in the cold","Slower in warmth"],
+			"hunt_sanity": "???",
+			"speed": "variable"
+		},
+		{
+			"ghost":"Boogey",
+			"evidence":["ESG","EMF 5","Spirit Box"],
+			"behavior": [
+				"<span class=\"ghost-warning\"><b>WARNING:</b> Behavior Unknown</span>",
+				"<span class='ghost-note'><b>INTERACTIONS:</b> throwing objects</span>",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Hunts at 50% sanity (Seen 2x)</span>",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Hunts at 20% sanity (Seen 2x)</span>"
+			],
+			"hunt_sanity": "50%?",
+			"speed": "normal"
+		},
+		{
+			"ghost":"Demon",
+			"evidence":["Freezing","Ectoplasm","Easel"],
+			"behavior":["Aggressive when hunting",
+			"Not sensitive to player activity",
+			"<span class='ghost-note'><b>INTERACTIONS:</b> speaking, throwing objects, turning lights on and off 2x</span>",
+			"<span class='ghost-note'><b>NOTES:</b> Lowest sanity observed without hunt was 15%</span>",
+			"<span class='ghost-note'><b>HYPOTHESIS:</b> Hunt threshold below 20% (Seen 3x)</span>"],
+			"hunt_sanity": "20%?",
+			"speed": "unknown"
+		},
+		{
+			"ghost":"Deogen",
+			"evidence":["ESG","Ectoplasm","Fingerprints"],
+			"behavior":["Selects a favored target",
+				"Increased aggression when near chosen target",
+				"<span class='ghost-note'><b>INTERACTIONS:</b> speaking, throwing objects, moviring furniture, turning lights on and off</span>",
+				"<span class='ghost-note'><b>NOTES:</b> Lowest sanity observed without hunt was 60%</span>"],
+			"hunt_sanity": "???",
+			"speed": "unknown"
+		},
+		{
+			"ghost": "Goryo",
+			"evidence": [ "ESG", "EMF 5", "Fingerprints" ],
+			"behavior": [
+				"Cannot get ESG if players are nearby",
+				"<span class='ghost-note'><b>INTERACTIONS:</b> speaking, throwing objects</span>",
+				"<span class='ghost-note'><b>NOTES:</b> Lowest sanity observed without hunt was 30% (Seen 1x)</span>"
+			],
+			"hunt_sanity": "30%?",
+			"speed": "normal"
+		},
+		{
+			"ghost":"Guipo",
+			"evidence":["ESG","Ectoplasm","Spirit Box"],
+			"behavior":["<span class=\"ghost-warning\"><b>WARNING:</b> Behavior Unknown</span>",
+			"<span class='ghost-note'><b>INTERACTIONS:</b> throwing objects, moviring furniture, frequent fire interactions</span>",
+			"<span class='ghost-note'><b>NOTES:</b> Hunted at 50, 55% x3</span>",
+			"<span class='ghost-note'><b>NOTES:</b> Refused to give ESG over long period (Seen 1x)</span>",
+			"<span class='ghost-note'><b>NOTES:</b> When person with sanity < 15% entered, hunted immediately x1</span>",
+			"<span class='ghost-note'><b>NOTES:</b> Hunted twice back to back with no cooldown (Seen 1x)</span>"],
+			"hunt_sanity": "60%?",
+			"speed": "normal"
+		},
+		{
+			"ghost":"Gul",
+			"evidence":["Freezing","Fingerprints","Spirit Box"],
+			"behavior":["Talking causes aggression",
+				"<span class='ghost-note'><b>NOTES:</b> Observed not hunting until 25% x1.  Highest sanity observed hunting was 80% while talking x1.</span>"],
+			"hunt_sanity": "80%? 25%?",
+			"speed": "unknown"
+		},
+		{
+			"ghost":"Hantu",
+			"evidence":["Freezing","Easel","Spirit Box"],
+			"behavior":["Curses players who talk nearby, draining sanity",
+				"<span class='ghost-note'><b>NOTES:</b> Lowest sanity observed without hunt was 50% (Seen 1x)</span>"],
+			"hunt_sanity": "???",
+			"speed": "unknown"
+		},
+		{
+			"ghost":"Iblis",
+			"evidence":["ESG","Easel","Spirit Box"],
+			"behavior": [
+				"Unique vocalizations no other ghost will say",
+				"Always knows player locations",
+				"Speed decreases with proximity to player",
+				"<span class='ghost-note'><b>NOTES:</b> Laughter on spirit box (Seen 1x)</span>",
+				"<span class='ghost-note'><b>NOTES:</b> Sanity reached 40% without hunting (Seen 1x).</span>"
+			],
+			"hunt_sanity": "???",
+			"speed": "variable"
+		},
+		{
+			"ghost":"Jinn",
+			"evidence":["Freezing","EMF 5","ESG"],
+			"behavior":["Very active","Hunts frequently",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Hunts under 20% (Seen 2x)</span>"],
+			"hunt_sanity": "20%?",
+			"speed": "slow"
+		},
+		{
+			"ghost":"Mare",
+			"evidence":["Freezing","EMF 5","Easel"],
+			"behavior":["Likes talking",
+				"Reduced activity and may be difficult to detect",
+				"Does not like to hunt with players nearby"],
+			"hunt_sanity": "???",
+			"speed": "unknown"
+		},
+		{
+			"ghost":"Myling",
+			"evidence":["Freezing","Ectoplasm","Spirit Box"],
+			"behavior":[
+				"Fire attracts the ghost and suppresses activity",
+				"Will extinguish flame before hunting",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Likes to light fireplaces and other fire sources</span>",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Hunts at 30%? Seen 1x</span>"],
+			"hunt_sanity": "30%?",
+			"speed": "unknown"
+		},
+		{
+			"ghost":"Naamah",
+			"evidence":["ESG","Easel","Ectoplasm"],
+			"behavior": [
+				"<span class=\"ghost-warning\"><b>WARNING:</b> Behavior Unknown</span>",
+				"<span class='ghost-note'><b>INTERACTIONS:</b> speaking, throwing objects, moviring furniture, turning lights on and off</span>",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Hunts at 40%? (Seen 2x)</span>",
+				"<span class='ghost-note'><b>NOTES:</b> Observed high frequency of interactions (Seen 1x).</span>"
+			],
+			"hunt_sanity": "40%?",
+			"speed": "fast"
+		},
+		{
+			"ghost":"Oni",
+			"evidence":["Freezing","EMF 5","Fingerprints"],
+			"behavior":["Drains sanity when in proximity to players","Fast movement speed when hunting"],
+			"hunt_sanity": "???",
+			"speed": "fast"
+		},
+		{
+			"ghost":"Onryo",
+			"evidence":["EMF 5","Easel","Fingerprints"],
+			"behavior":["Will never attack the person it loves",
+				"<span class='ghost-note'><b>INTERACTIONS:</b> Speaking, throwing objects, blowing out candles</span>",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Highly interactive towards everyone except its obsession</span>",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Hunts at 30%? (Seen 2x)</span>",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Fast when hunting. (Seen 1x)</span>"],
+			"hunt_sanity": "30%?",
+			"speed": "fast"
+		},
+		{
+			"ghost":"Poltergeist",
+			"evidence":["ESG","Fingerprints","Spirit Box"],
+			"behavior": [
+				"Throws objects frequently",
+				"Removing all throwable objects calms the ghost",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Fast when hunting. (Seen 1x)</span>",
+				"<span class='ghost-note'><b>INTERACTIONS:</b> Speaking, throwing objects, moving furniture</span>",
+				"<span class='ghost-note'><b>NOTES:</b> Lowest sanity observed without hunt was 25% (Seen 1x)</span>"
+			],
+			"hunt_sanity": "???",
+			"speed": "fast"
+		},
+		{
+			"ghost":"Raiju",
+			"evidence":["Freezing","ESG","Ectoplasm"],
+			"behavior": [
+				"Aggressive when players are isolated",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Hunts at 40% (Seen 1x).</span>",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Hunts at 60% (Seen 2x).</span>",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Hunts at 80% (Seen 3x).</span>"
+			],
+			"hunt_sanity": "80%? 40%?",
+			"speed": "normal"
+		},
+		{
+			"ghost":"<span class='ghost-alert'>Revenant</span>",
+			"evidence":["Freezing","Easel","Fingerprints"],
+			"behavior":["<span class='ghost-alert'><span style='font-family: Consolas; font-weight: bold;'>!!! DANGER !!!</span> Can always hunt</span>",
+				"<span class='ghost-note'><b>INTERACTIONS:</b> Speaking, throwing objects, moving furniture, blowing out candles</span>",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Fast at a distance, slow at close range to player.  Seen 1x</span>",
+				"<span class='ghost-note'><b>NOTES:</b> P2 heard audio that P1 didn't.</span>"],
+			"hunt_sanity": "100%",
+			"speed": "variable"
+		},
+		{
+			"ghost":"Shade",
+			"evidence":["Easel","Ectoplasm","Spirit Box"],
+			"behavior":["Darkness increases aggression",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Won't turn on lights (Seen 3x)</span>"],
+			"hunt_sanity": "???",
+			"speed": "unknown"
+		},
+		{
+			"ghost": "Thaye",
+			"evidence": [ "Easel", "Fingerprints", "Spirit Box" ],
+			"behavior": [
+				"Starts very aggressive but becomes less aggressive over time",
+				"Starts fast and becomes slower with age",
+				"<span class='ghost-note'><b>NOTES:</b> Did not hunt above 70%</span>"
+			],
+			"hunt_sanity": "???",
+			"speed": "variable"
+		},
+		{
+			"ghost":"Wraith",
+			"evidence":["EMF 5","Ectoplasm","Fingerprints"],
+			"behavior":["<span class=\"ghost-warning\"><b>WARNING:</b> Behavior Unknown</span>",
+			"<span class='ghost-note'><b>NOTES:</b> May have been faster at a distance (Seen 1x).</span>",
+			"<span class='ghost-note'><b>NOTES:</b> May have faked ESG (Seen 1x).</span>"],
+			"hunt_sanity": "30%?",
+			"speed": "normal"
+		},
+		{
+			"ghost":"Yokai",
+			"evidence":["EMF 5","Easel","Spirit Box"],
+			"behavior":["No special behaviors",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Appeared normal speed (Seen 2x).</span>"],
+			"hunt_sanity": "50%",
+			"speed": "normal"
+		},
+		{
+			"ghost":"Yurei",
+			"evidence":["ESG","EMF 5","Ectoplasm"],
+			"behavior":["Aggressive when grouped",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Hunts at 20% (Seen 2x).</span>",
+				"<span class='ghost-note'><b>HYPOTHESIS:</b> Appeared normal speed (Seen 1x).</span>"
+				],
+			"hunt_sanity": "20%?",
+			"speed": "normal"
+		}
+				
+	],
+
+	"speeds": {
+		"slow": "<img src=\"imgs/speed/slow.png\" class=\"speedIcon\" />",
+		"normal": "<img src=\"imgs/speed/normal.png\" class=\"speedIcon\" />",
+		"fast": "<img src=\"imgs/speed/fast.png\" class=\"speedIcon\" />",
+		"variable": "<img src=\"imgs/speed/variable.png\" class=\"speedIcon\" />"
+	},
+
+	"dataRevision": "12",
+
+	"version":"0.3.1",
+	
+	"evidence":["EMF 5","ESG","Fingerprints","Freezing","Ectoplasm","Easel","Spirit Box"]
+}

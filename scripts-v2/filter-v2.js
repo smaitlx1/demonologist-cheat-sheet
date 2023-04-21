@@ -1,7 +1,7 @@
 function getCookie(e){let t=e+"=",i=decodeURIComponent(document.cookie).split(";");for(let n=0;n<i.length;n++){let o=i[n];for(;" "==o.charAt(0);)o=o.substring(1);if(0==o.indexOf(t))return o.substring(t.length,o.length)}return""}
 function setCookie(e,t,i){let n=new Date;n.setTime(n.getTime()+864e5*i);let o="expires="+n.toUTCString();document.cookie=e+"="+t+";"+o+";path=/"}
 
-const all_evidence = ["DOTs","EMF 5","Fingerprints","Freezing","Ghost Orbs","Writing","Spirit Box"]
+const all_evidence = ["ESG","EMF 5","Fingerprints","Freezing","Ectoplasm","Easel","Spirit Box"]
 const all_ghosts = ["Spirit","Wraith","Phantom","Poltergeist","Banshee","Jinn","Mare","Revenant","Shade","Demon","Yurei","Oni","Yokai","Hantu","Goryo","Myling","Onryo","The Twins","Raiju","Obake","The Mimic","Moroi","Deogen","Thaye"]
 const all_speed = ["Slow","Normal","Fast"]
 
@@ -11,10 +11,9 @@ var user_settings = {"num_evidences":3,"ghost_modifier":2,"volume":50,"offset":0
 let hasLink = false;
 
 function loadData(){
-    fetch("https://zero-network.net/phasmophobia/data/ghosts.json", {signal: AbortSignal.timeout(2000)})
+    fetch("data/ghosts.json", {signal: AbortSignal.timeout(2000)})
     .then(data => data.json())
     .then(data => {
-        loadSettings()
 
         var cards = document.getElementById('cards')
         var cur_version = document.getElementById('current-version-label')
@@ -35,7 +34,7 @@ function loadData(){
             var ghost = new Ghost(data.ghosts[i]);
             cards.innerHTML += `${ghost.ghostTemplate}`
         }
-        cur_version.innerHTML = `${data.version}`
+        //cur_version.innerHTML = `${data.version}`
 
         var start_state = getCookie("state")
 
@@ -83,9 +82,8 @@ function loadData(){
 
     })
     .catch(error => {
-        loadSettings()
 
-        fetch("backup-data/ghosts_backup.json")
+        fetch("data/ghosts.json")
         .then(data => data.json())
         .then(data => {
             var cards = document.getElementById('cards')
@@ -106,7 +104,7 @@ function loadData(){
                 var ghost = new Ghost(data.ghosts[i]);
                 cards.innerHTML += `${ghost.ghostTemplate}`
             }
-            cur_version.innerHTML = `${data.version}`
+            document.getElementById("currentVersion").innerHTML = `${data.version}`
             filter()
         })
     })
@@ -224,7 +222,7 @@ function filter(ignore_link=false){
     var bad_checkboxes = document.querySelectorAll('[name="evidence"] .bad');
     var speed_checkboxes = document.querySelectorAll('[name="speed"] .good');
     var num_evidences = document.getElementById("num_evidence").value
-    var speed_logic_type = document.getElementById("speed_logic_type").checked ? 1 : 0;
+    //var speed_logic_type = document.getElementById("speed_logic_type").checked ? 1 : 0;
 
     for (var i = 0; i < good_checkboxes.length; i++) {
         evi_array.push(good_checkboxes[i].parentElement.value);
@@ -270,8 +268,8 @@ function filter(ignore_link=false){
         var evi_objects = ghosts[i].getElementsByClassName("ghost_evidence_item")
         var evidence = []
         for (var j = 0; j < evi_objects.length; j++){evidence.push(evi_objects[j].textContent)}
-        var nm_evidence = ghosts[i].getElementsByClassName("ghost_nightmare_evidence")[0].textContent;
-        var speed = ghosts[i].getElementsByClassName("ghost_speed")[0].textContent;
+        var nm_evidence = 3;
+        //var speed = ghosts[i].getElementsByClassName("ghost_speed")[0].textContent;
         if (name == "The Mimic"){
             evidence.push("Ghost Orbs")
             mimic_evi = evidence
@@ -282,171 +280,20 @@ function filter(ignore_link=false){
 
         // Check for evidences
         // Standard
-        if (num_evidences == "3"){
-
-            if (evi_array.length > 0){
-                evi_array.forEach(function (item,index){
-                    if(!evidence.includes(item)){
-                        keep = false
-                    }
-                });
-            }
-
-            if (not_evi_array.length > 0){
-                not_evi_array.forEach(function (item,index){
-                    if(evidence.includes(item)){
-                        keep = false
-                    }
-                });
-            }
-        }
-
-        // Nightmare Mode
-        else if (num_evidences == "2"){
-
-
-            if (evi_array.length == 3 && name != "The Mimic"){
-                keep = false
-            }
-            else if (evi_array.length > 0){
-                if (evi_array.length > (evidence.length > 3 ? 2 : 1) && evidence.filter(x => !evi_array.includes(x)).includes(nm_evidence)){
+        if (evi_array.length > 0){
+            evi_array.forEach(function (item,index){
+                if(!evidence.includes(item)){
                     keep = false
-                }
-
-                evi_array.forEach(function (item,index){
-                    if(!evidence.includes(item)){
-                        keep = false
-                    }
-                });
-
-            }
-
-            if (nm_evidence != "" && not_evi_array.includes(nm_evidence)){
-                keep = false
-            }
-            if (not_evi_array.length > 1){
-                if (evidence.filter(x => !not_evi_array.includes(x)).length <= (evidence.length > 3 ? 2 : 1)){
-                    keep = false
-                }
-            }
-        }
-
-        // Insanity
-        else if (num_evidences == "1"){
-
-            if (evi_array.length == 2 && name != "The Mimic"){
-                keep = false
-            }
-            else if (evi_array.length > 0){
-                if (evi_array.length > (evidence.length > 3 ? 1 : 0) && evidence.filter(x => !evi_array.includes(x)).includes(nm_evidence)){
-                    keep = false
-                }
-
-                evi_array.forEach(function (item,index){
-                    if(!evidence.includes(item)){
-                        keep = false
-                    }
-                });
-
-            }
-
-            if (nm_evidence != "" && not_evi_array.includes(nm_evidence)){
-                keep = false
-            }
-            if (not_evi_array.length > 1){
-                if (evidence.filter(x => !not_evi_array.includes(x)).length <= (evidence.length > 3 ? 1 : 0)){
-                    keep = false
-                }
-            }
-        }
-
-        // Apocalypse
-        else if (num_evidences == "0"){
-
-            if (evi_array.length > 0 && name != "The Mimic"){
-                keep = false
-            }
-
-            if (not_evi_array.length > 0 && name == "The Mimic"){
-                keep = false
-            }
-        }
-
-        //Check for speed
-        //Parse Ghost speeds
-        if (speed.includes('|')){
-            var speeds = speed.split('|')
-            var speed_type = "or"
-        }
-        else if(speed.includes('-')){
-            var speeds = speed.split('-')
-            var speed_type = "range"
-        }
-        else{
-            var speeds = [speed]
-            var speed_type = "or"
-        }
-
-        // Get min and max
-        var min_speed = parseFloat(speeds[0].replaceAll(" m/s",""))
-        if (speeds.length > 1){
-            var max_speed = parseFloat(speeds[1].replaceAll(" m/s",""))
-        }
-        else{
-            var max_speed = min_speed
-        }
-
-        // Check if speed is being kept
-        if (keep){
-            if(min_speed < base_speed || name == "The Mimic"){
-                keep_speed.add('Slow')
-            }
-            if ((speed_type == "range" && min_speed <= base_speed && base_speed <= max_speed) || name == "The Mimic"){
-                keep_speed.add('Normal')
-            }
-            else if(min_speed === base_speed || max_speed === base_speed){
-                keep_speed.add('Normal')
-            }
-            if(max_speed > base_speed || name == "The Mimic"){
-                keep_speed.add('Fast')
-            }
-        }
-
-        // Check if ghost is being kept
-        if (spe_array.length > 0){
-            var skeep = false,nkeep = false,fkeep = false;
-
-            var shas = (min_speed < base_speed || name == "The Mimic")
-            var nhas = (speed_type == "or" && (min_speed === base_speed || max_speed === base_speed || name == "The Mimic")) || (speed_type == "range" && min_speed <= base_speed && base_speed <= max_speed)
-            var fhas = (max_speed > base_speed || name == "The Mimic")
-
-            spe_array.forEach(function (item,index){
-
-                if (item == "Slow"){
-                    skeep = true
-                }
-                else if (item == "Normal"){
-                    nkeep = true
-                }
-                else if (item == "Fast"){
-                    fkeep = true
                 }
             });
+        }
 
-            // OR Logic
-            if (speed_logic_type == 0){
-                if(!((skeep && shas) || (nkeep && nhas) || (fkeep && fhas))){
+        if (not_evi_array.length > 0){
+            not_evi_array.forEach(function (item,index){
+                if(evidence.includes(item)){
                     keep = false
                 }
-            }
-
-            // AND Logic
-            else{
-                if(!(skeep == (skeep && shas) && nkeep == (nkeep && nhas) && fkeep == (fkeep && fhas))){
-                    keep = false
-                }
-            }
-
+            });
         }
 
         ghosts[i].className = ghosts[i].className.replaceAll(" hidden","");
@@ -460,156 +307,21 @@ function filter(ignore_link=false){
         }
     }
 
-    if (num_evidences == "3"){
-        if (evi_array.length > 0){
-            all_evidence.filter(evi => !keep_evidence.has(evi)).forEach(function(item){
-                if (!not_evi_array.includes(item)){
-                    var checkbox = document.getElementById(item);
-                    $(checkbox).addClass("block")
-                    $(checkbox).find("#checkbox").removeClass(["good","bad"])
-                    $(checkbox).find("#checkbox").addClass(["neutral","block","disabled"])
-                    $(checkbox).find(".label").addClass("disabled-text")
-                    $(checkbox).find(".label").removeClass("strike")
-                }
-            })
-        }
-    }
-
-    else if (num_evidences == "2"){
-        var keep_evi = evi_array
-        if (keep_evi.length == 3){
-            all_evidence.filter(evi => !keep_evi.includes(evi)).forEach(function(item){
-                if (!not_evi_array.includes(item)){
-                    var checkbox = document.getElementById(item);
-                    $(checkbox).addClass("block")
-                    $(checkbox).find("#checkbox").removeClass(["good","bad"])
-                    $(checkbox).find("#checkbox").addClass(["neutral","block","disabled"])
-                    $(checkbox).find(".label").addClass("disabled-text")
-                    $(checkbox).find(".label").removeClass("strike")
-                }
-            })
-        }
-        else if (keep_evi.length == 2){
-            if (keep_evi.every(x => mimic_evi.includes(x))){
-                mimic_evi.pop(mimic_nm_evi)
-                if (keep_evi.every(x => mimic_evi.includes(x))){
-                    keep_evi.push(mimic_nm_evi)
-                }
-                else{
-                    keep_evi=mimic_evi
-                    keep_evi.push(mimic_nm_evi)
-                } 
-            }
-
-            all_evidence.filter(evi => !keep_evi.includes(evi)).forEach(function(item){
-                if (!not_evi_array.includes(item)){
-                    var checkbox = document.getElementById(item);
-                    $(checkbox).addClass("block")
-                    $(checkbox).find("#checkbox").removeClass(["good","bad"])
-                    $(checkbox).find("#checkbox").addClass(["neutral","block","disabled"])
-                    $(checkbox).find(".label").addClass("disabled-text")
-                    $(checkbox).find(".label").removeClass("strike")
-                }
-            })
-        }
-        else if (keep_evi.length > 0){
-            all_evidence.filter(evi => !keep_evidence.has(evi)).forEach(function(item){
-                if (!not_evi_array.includes(item)){
-                    var checkbox = document.getElementById(item);
-                    $(checkbox).addClass("block")
-                    $(checkbox).find("#checkbox").removeClass(["good","bad"])
-                    $(checkbox).find("#checkbox").addClass(["neutral","block","disabled"])
-                    $(checkbox).find(".label").addClass("disabled-text")
-                    $(checkbox).find(".label").removeClass("strike")
-                }
-            })
-        }
-    }
-
-    else if (num_evidences == "1"){
-        var keep_evi = evi_array
-        if (keep_evi.length == 2){
-            all_evidence.filter(evi => !keep_evi.includes(evi)).forEach(function(item){
-                if (!not_evi_array.includes(item)){
-                    var checkbox = document.getElementById(item);
-                    $(checkbox).addClass("block")
-                    $(checkbox).find("#checkbox").removeClass(["good","bad"])
-                    $(checkbox).find("#checkbox").addClass(["neutral","block","disabled"])
-                    $(checkbox).find(".label").addClass("disabled-text")
-                    $(checkbox).find(".label").removeClass("strike")
-                }
-            })
-        }
-        else if (keep_evi.length == 1){
-            if (keep_evi.every(x => mimic_evi.includes(x))){
-                mimic_evi.pop(mimic_nm_evi)
-                if (keep_evi.every(x => mimic_evi.includes(x))){
-                    keep_evi.push(mimic_nm_evi)
-                }
-                else{
-                    keep_evi=mimic_evi
-                    keep_evi.push(mimic_nm_evi)
-                } 
-            }
-
-            all_evidence.filter(evi => !keep_evi.includes(evi)).forEach(function(item){
-                if (!not_evi_array.includes(item)){
-                    var checkbox = document.getElementById(item);
-                    $(checkbox).addClass("block")
-                    $(checkbox).find("#checkbox").removeClass(["good","bad"])
-                    $(checkbox).find("#checkbox").addClass(["neutral","block","disabled"])
-                    $(checkbox).find(".label").addClass("disabled-text")
-                    $(checkbox).find(".label").removeClass("strike")
-                }
-            })
-        }
-        else if (keep_evi.length > 0){
-            all_evidence.filter(evi => !keep_evidence.has(evi)).forEach(function(item){
-                if (!not_evi_array.includes(item)){
-                    var checkbox = document.getElementById(item);
-                    $(checkbox).addClass("block")
-                    $(checkbox).find("#checkbox").removeClass(["good","bad"])
-                    $(checkbox).find("#checkbox").addClass(["neutral","block","disabled"])
-                    $(checkbox).find(".label").addClass("disabled-text")
-                    $(checkbox).find(".label").removeClass("strike")
-                }
-            })
-        }
-    }
-
-    else if (num_evidences == "0"){
-        all_evidence.filter(evi => evi != 'Ghost Orbs').forEach(function(item){
-            var checkbox = document.getElementById(item);
-            $(checkbox).addClass("block")
-            $(checkbox).find("#checkbox").removeClass(["good","bad"])
-            $(checkbox).find("#checkbox").addClass(["neutral","block","disabled"])
-            $(checkbox).find(".label").addClass("disabled-text")
-            $(checkbox).find(".label").removeClass("strike")
-        })
-    }
-
     if (evi_array.length > 0){
-        all_speed.filter(spe => !keep_speed.has(spe)).forEach(function(item){
-            var checkbox = document.getElementById(item);
-            $(checkbox).addClass("block")
-            $(checkbox).find("#checkbox").removeClass(["good"])
-            $(checkbox).find("#checkbox").addClass(["neutral","block","disabled"])
-            $(checkbox).find(".label").addClass("disabled-text")
+        all_evidence.filter(evi => !keep_evidence.has(evi)).forEach(function(item){
+            if (!not_evi_array.includes(item)){
+                var checkbox = document.getElementById(item);
+                $(checkbox).addClass("block")
+                $(checkbox).find("#checkbox").removeClass(["good","bad"])
+                $(checkbox).find("#checkbox").addClass(["neutral","block","disabled"])
+                $(checkbox).find(".label").addClass("disabled-text")
+                $(checkbox).find(".label").removeClass("strike")
+            }
         })
     }
-    
+
     setCookie("state",JSON.stringify(state),1)
     if (hasLink && !ignore_link){send_state()}
-}
-
-function showGlobe(){
-    $("#world").fadeToggle(400)
-    reloadData()
-    scale()
-}
-
-function showMaps(){
-    $("#maps").fadeToggle(400)
 }
 
 function showInfo(){
@@ -623,160 +335,6 @@ function showInfo(){
     }
 
     $("#blackout").fadeToggle(400)
-}
-
-function showSettings(){
-    if (document.getElementById("settings_box").style.left == "-32px"){
-        document.getElementById("settings_box").style.boxShadow = "5px 0px 10px 0px #000"
-        document.getElementById("settings_tab").style.boxShadow = "-6px 5px 5px -2px #000"
-        document.getElementById("discord_link_box").style.zIndex= "1"
-        document.getElementById("event_box").style.zIndex= "1"
-        document.getElementById("wiki_box").style.zIndex= "1"
-        document.getElementById("settings_box").style.zIndex = "2"
-        document.getElementById("settings_box").style.left = "196px"
-    }
-    else {
-        document.getElementById("settings_box").style.left = "-32px"
-        document.getElementById("settings_box").style.boxShadow = "none"
-        document.getElementById("settings_tab").style.boxShadow = "none"
-    }
-}
-
-function showDiscordLink(){
-    if (document.getElementById("discord_link_box").style.left == "-32px"){
-        document.getElementById("discord_link_box").style.boxShadow = "5px 0px 10px 0px #000"
-        document.getElementById("discord_link_tab").style.boxShadow = "-6px 5px 5px -2px #000"
-        document.getElementById("settings_box").style.zIndex = "1"
-        document.getElementById("event_box").style.zIndex= "1"
-        document.getElementById("wiki_box").style.zIndex= "1"
-        document.getElementById("discord_link_box").style.zIndex= "2"
-        document.getElementById("discord_link_box").style.left = "196px"
-    }
-    else {
-        document.getElementById("discord_link_box").style.left = "-32px"
-        document.getElementById("discord_link_box").style.boxShadow = "none"
-        document.getElementById("discord_link_tab").style.boxShadow = "none"
-    }
-}
-
-function showEvent(){
-    if (document.getElementById("event_box").style.left == "-182px"){
-        document.getElementById("event_box").style.boxShadow = "5px 0px 10px 0px #000"
-        document.getElementById("event_tab").style.boxShadow = "-6px 5px 5px -2px #000"
-        document.getElementById("settings_box").style.zIndex = "1"
-        document.getElementById("wiki_box").style.zIndex= "1"
-        document.getElementById("discord_link_box").style.zIndex= "1"
-        document.getElementById("event_box").style.zIndex= "2"
-        document.getElementById("event_box").style.left = "196px"
-    }
-    else {
-        document.getElementById("event_box").style.left = "-182px"
-        document.getElementById("event_box").style.boxShadow = "none"
-        document.getElementById("event_tab").style.boxShadow = "none"
-    }
-}
-
-function showWiki(){
-    if (document.getElementById("wiki_box").style.left == "-182px"){
-        document.getElementById("wiki_box").style.boxShadow = "5px 0px 10px 0px #000"
-        document.getElementById("wiki_tab").style.boxShadow = "-6px 5px 5px -2px #000"
-        document.getElementById("settings_box").style.zIndex = "1"
-        document.getElementById("discord_link_box").style.zIndex= "1"
-        document.getElementById("event_box").style.zIndex= "1"
-        document.getElementById("wiki_box").style.zIndex= "1"
-        document.getElementById("wiki_box").style.left = "196px"
-    }
-    else {
-        document.getElementById("wiki_box").style.left = "-182px"
-        document.getElementById("wiki_box").style.boxShadow = "none"
-        document.getElementById("wiki_tab").style.boxShadow = "none"
-    }
-}
-
-function flashMode(){
-    var cur_evidence = parseInt(document.getElementById("num_evidence").value)
-    var mode_text = ["Apocalypse","Insanity","Nightmare","Professional"][cur_evidence]
-    document.getElementById("game_mode").innerHTML = `${mode_text}<span>(${cur_evidence} evidence)</span>`
-    $("#game_mode").fadeIn(500,function () {
-        $("#game_mode").delay(500).fadeOut(500);
-      });
-}
-
-function saveSettings(){
-    user_settings['volume'] = parseInt(document.getElementById("modifier_volume").value)
-    user_settings['offset'] = parseInt(document.getElementById("offset_value").innerText.replace(/\d+(?:-\d+)+/g,""))
-    user_settings['ghost_modifier'] = parseInt(document.getElementById("ghost_modifier_speed").value)
-    user_settings['num_evidences'] = parseInt(document.getElementById("num_evidence").value)
-    user_settings['sound_type'] = document.getElementById("modifier_sound_type").checked ? 1 : 0;
-    user_settings['speed_logic_type'] = document.getElementById("speed_logic_type").checked ? 1 : 0;
-    setCookie("settings",JSON.stringify(user_settings),30)
-}
-
-function loadSettings(){
-    try{
-        user_settings = JSON.parse(getCookie("settings"))
-    } catch (error) {
-        user_settings = {"num_evidences":3,"ghost_modifier":2,"volume":50,"offset":0,"sound_type":0,"speed_logic_type":0}
-    }
-    document.getElementById("modifier_volume").value = user_settings['volume'] ?? 50
-    document.getElementById("offset_value").innerText = ` ${user_settings['offset'] ?? 0}% `
-    document.getElementById("ghost_modifier_speed").value = user_settings['ghost_modifier'] ?? 2
-    document.getElementById("num_evidence").value = user_settings['num_evidences'] ?? 3
-    document.getElementById("modifier_sound_type").checked = user_settings['sound_type'] ?? 0 == 1
-    document.getElementById("speed_logic_type").checked = user_settings['speed_logic_type'] ?? 0 == 1
-    setCookie("settings",JSON.stringify(user_settings),30)
-    setVolume()
-    adjustOffset(0)
-    setTempo()
-    setSoundType()
-    flashMode()
-}
-
-function resetSettings(){
-    user_settings = {"num_evidences":3,"ghost_modifier":2,"volume":50,"offset":0,"sound_type":0,"speed_logic_type":0}
-    document.getElementById("modifier_volume").value = user_settings['volume']
-    document.getElementById("offset_value").innerText = ` ${user_settings['offset']}% `
-    document.getElementById("ghost_modifier_speed").value = user_settings['ghost_modifier']
-    document.getElementById("num_evidence").value = user_settings['num_evidences']
-    document.getElementById("modifier_sound_type").checked = user_settings['sound_type'] == 1
-    document.getElementById("speed_logic_type").checked = user_settings['speed_logic_type'] == 1
-    setCookie("settings",JSON.stringify(user_settings),30)
-}
-
-function changeMap(elem,map){
-
-    $(".maps_button").removeClass("selected_map")
-    $(elem).addClass("selected_map")
-    $(".map_image").css("background-image","url(imgs/maps/"+map+")")
-}
-
-function zoomMap(elem){
-    $(".map_image").css("width",`200%`)
-    $(".map_image").css("height",`200%`)
-}
-
-function unZoomMap(elem){
-    $(".map_image").css("width",`100%`)
-    $(".map_image").css("height",`100%`)
-    $(".map_image").css("left",`0`)
-    $(".map_image").css("top",`0`)
-}
-
-function moveZoom(elem,e){
-    mpx = (e.clientX - $(elem).offset().left) / $(elem).width()
-    mpy = (e.clientY - $(elem).offset().top) / $(elem).height()
-    $(".map_image").css("left",`-${(mpx*120)-10}%`)
-    $(".map_image").css("top",`-${(mpy*120)-10}%`)
-}
-
-function playSound(resource){
-    var snd = new Audio(resource);
-    snd.volume = volume
-    snd.play()
-}
-
-function setSpeedLogicType(){
-    snd_choice = document.getElementById("speed_logic_type").checked ? 1 : 0;
 }
 
 function reset(skip_continue_session=false){
@@ -794,4 +352,26 @@ function reset(skip_continue_session=false){
         setCookie("state",JSON.stringify(state),-1)
         location.reload()
     });
+}
+
+function showWiki(){
+    if (document.getElementById("wiki_box").style.left == "-182px"){
+		closeTabs()
+		
+        document.getElementById("wiki_box").style.boxShadow = "5px 0px 10px 0px #000"
+        document.getElementById("wiki_tab").style.boxShadow = "-6px 5px 5px -2px #000"
+        document.getElementById("wiki_box").style.zIndex= "1"
+        document.getElementById("wiki_box").style.left = "196px"
+    }
+    else {
+        closeTabs()
+    }
+}
+
+function closeTabs() {
+	document.getElementById("wiki_box").style.left = "-182px"
+    document.getElementById("wiki_box").style.boxShadow = "none"
+    document.getElementById("wiki_tab").style.boxShadow = "none"
+	
+	
 }

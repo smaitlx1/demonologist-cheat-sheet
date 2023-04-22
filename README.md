@@ -18,7 +18,7 @@ This repository may contain some left over assets from Demonologist (used with p
 `Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for "fair use" for purposes such as criticism, comment, news reporting, teaching, scholarship and research. Fair use is a use permitted by copyright statute that might otherwise be infringing.`
 
 ---
-`This repository is derived in part from the Phasmophobia Cheat Sheet copyright Ty Bayn, used under the [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.`
+`This repository is derived in part from the Phasmophobia Cheat Sheet copyright Ty Bayn, used under the CC BY-NC-SA 4.0 license.`
 
 ## Derivative Works
 

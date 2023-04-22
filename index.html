@@ -15,42 +15,45 @@
     <link rel="stylesheet" href="wiki-v2/wiki.css" >
     <link rel="stylesheet" href="events-v2/events.css" >
     <link rel="stylesheet" href="styles-v2/sparkles.css" >
+    <link rel="stylesheet" href="pages/pages.css" />
 </head>
 
 <body>
 
-	<div id="wiki_box" style="left:-182px;">
-        <div id="wiki_tab" onclick="showWiki();">Notebook</div>
+    <div id="notebook_tab" class="pageTab white" onclick="showTab('notebook')">Notebook</div>
+    <div id="guide_tab" class="pageTab white" onclick="showTab('guide')">Guide</div>
+
+    <div id="notebook_box" class="pageBox" style="left:-182px;">
         <div class="settings_title yfont white">Notebook</div>
-        <div id="wiki-body" class="info_block"></div>
+        <div id="notebook-body" class="info_block"></div>
+    </div>
+
+    <div id="guide_box" class="pageBox" style="left:-182px;">
+        <div class="settings_title yfont white">Guide</div>
+        <div id="guide-body" class="info_block"></div>
     </div>
 
     <div class="data">
         <div class="header"></div>
         <div class="evidence_title yfont white">
-            Evidence <select name="num_evidence" id="num_evidence" class="num_evidence" onchange="filter();flashMode();saveSettings();" style="display: none;">
-                <option value="3">3</option>
-                <!--<option value="2">2</option>
-                <option value="1">1</option>
-                <option value="0">0</option>-->
-              </select>
+            Evidence
         </div>
-		
+
         <div id="evidence" class="evidence">
             <div class="dot-flashing"></div>
         </div>
-		
+
         <div class="speed_title yfont white">Legend</div>
-		<div class="speed yfont white" style="font-size: 12pt; text-align: left; padding: 5px;">
-			This legend details how to interpret the colored text in the ghost cards.
-			<hr />
-			<span style="color: white;">Behavior (non-speculative)</span><br />
-			<span class="ghost-alert">Danger warning (non-speculative)</span><br />
-			<span class="ghost-warning">General warning (non-speculative)</span><br />
-			<span class="ghost-theory">High confidence, unofficial</span><br />
-			<span class="ghost-note">Low confidence, unofficial</span><br />
-		</div>
-	
+        <div class="speed yfont white" style="font-size: 12pt; text-align: left; padding: 5px;">
+            This legend details how to interpret the colored text in the ghost cards.
+            <hr />
+            <span style="color: white;">Behavior (non-speculative)</span><br />
+            <span class="ghost-alert">Danger warning (non-speculative)</span><br />
+            <span class="ghost-warning">General warning (non-speculative)</span><br />
+            <span class="ghost-theory">High confidence, unofficial</span><br />
+            <span class="ghost-note">Low confidence, unofficial</span><br />
+        </div>
+
         <div id="cards" class="cards"><div class="dot-flashing"></div></div>
 
         <button id="reset" class="yfont" onclick="reset()">Reset</button>
@@ -66,15 +69,11 @@
         <canvas id="globe"></canvas>
     </div>
 
-    <script src="scripts-v2/filter-v2.js"></script>
-    <script src="scripts-v2/wslink-v1.js"></script>
-    <script src="scripts-v2/sparkles.js"></script>
+    <script src="scripts-v2/filter2.js"></script>
     <script>
-        $(window).on('load', function() {
-            //checkLink()
+        $(window).on('load', function () {
             loadData()
-            //getLink()
-            $(function(){$("#wiki-body").load("wiki-v2/wiki.html")});
+            loadPages()
         });
     </script>
 

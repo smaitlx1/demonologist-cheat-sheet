@@ -8,7 +8,7 @@ This repository may contain some left over assets from Demonologist (used with p
 
 `Demonologist, the Demonologist logo, and any game related info, images, or sounds are either ® or TM, Clock Wizard Games. Any assets used  within this site are used with direct permission from Clock Wizard Games.`
 
-`The Zero-Network "Unofficial Demonologist Cheat Sheet" is not created by nor affiliated with Clock Wizard Games, its developers, or partners. This service is created by an independent third party.`
+`The "Unofficial Demonologist Cheat Sheet" is not created by nor affiliated with Demonologist, Clock Wizard Games, its developers, or partners. This service is created by an independent third party.`
 
 `This service is created as an educational tool for the Demonologist community, no copyright infringement intended.`
 

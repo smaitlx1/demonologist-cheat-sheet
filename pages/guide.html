@@ -1,0 +1,110 @@
+<script>
+	$(window).on('load', populateData())
+
+	function populateData() {
+		fetch("data/guide.json", { signal: AbortSignal.timeout(2000) })
+			.then(guide_data => guide_data.json())
+			.then(guide_data => {
+                // difficulties
+				populateListElement("difficultyEasy", guide_data.difficulties["Easy"])
+				populateListElement("difficultyMedium", guide_data.difficulties["Medium"])
+                populateListElement("difficultyHard", guide_data.difficulties["Hard"])
+
+                // Ouija questions
+				populateListElement("ouijaBoardQuestions", guide_data.cursedObjects.ouijaBoardQuestions)
+
+                // spirit box questions
+				populateListElement("spiritBoxQuestions", guide_data.evidence.spiritBoxQuestions)
+
+				// tarot cards table
+				var tarotCardTable = document.getElementById("tarotCards")
+
+				for (var tarotCard in guide_data.cursedObjects.tarotCards) {
+					tarotCardTable.innerHTML += `
+						<span class="yfont" style="font-size: 14pt; margin-bottom: 0px; padding-bottom: 0px;">${tarotCard}</span><br />
+						<span style="padding-left: 10px;">${guide_data.cursedObjects.tarotCards[tarotCard]}</style><br />
+						<br />
+					`
+				}
+			})
+	}
+
+	function populateListElement(element, values) {
+        var thisElement = document.getElementById(element)
+
+        for (var i = 0; i < values.length; i++) {
+            thisElement.innerHTML += `<li>${values[i]}</li>`
+        }
+	}
+</script>
+
+<div class="wiki_details" style="width: 90%;">
+	<div class="wiki_title yfont" style="width: 90%;">Difficulties</div>
+	<div class="wiki_details" style="width: 90%;">
+		<hr />
+		<h3>Easy</h3>
+		<div class="text" style="width: 90%;">
+			<ul id="difficultyEasy">
+			</ul>
+		</div>
+
+		<h3>Medium</h3>
+		<div class="text" style="width: 90%;">
+			<ul id="difficultyMedium">
+			</ul>
+		</div>
+		<h3>Hard</h3>
+		<div class="text" style="width: 90%;">
+			<ul id="difficultyHard">
+			</ul>
+		</div>
+	</div>
+
+	<br />
+
+	<div class="wiki_title yfont" style="width: 90%;">Evidence</div>
+	<hr />
+
+	<div class="wiki_details" style="width: 90%;">
+		<span class="ghost-note">Easel and ESG can be very difficult to get (Seen 8x).</span><br/>
+		<br />
+		<span class="ghost-note">Spirit Box can be very difficult to get (Seen 3x).</span><br/>
+		<br />
+		Ectoplasm should be checked for on walls and furniture located in the ghost's room <span class="ghost-note">as well as any rooms that share
+		a wall with it (Seen 1x)</span>. <br />
+	</div>
+
+	<div class="wiki_details" style="width: 90%;">
+		<hr />
+		<h3>Spirit Box Questions</h3>
+		<div class="text" style="width: 90%;">
+			<ul id="spiritBoxQuestions">
+			</ul>
+		</div>
+	</div>
+
+	<div class="wiki_title yfont" style="width: 90%;">Cursed Objects</div>
+	<div class="wiki_details" style="width: 90%;">
+		<hr />
+
+		<h3>Ouija Board</h3>
+		<div class="text" style="width: 90%;">
+			<ul id="ouijaBoardQuestions"></ul>
+		</div>
+
+		<h3>Tarot Cards</h3>
+		<div id="tarotCards" class="text" style="width: 90%;">
+		</div>
+
+		<br />
+
+		<div class="wiki_title yfont" style="width: 90%;">Objectives</div>
+		<div class="wiki_details" style="width: 90%;">
+			<hr />
+
+			<h3>Find the Silhouette</h3>
+			<p>This objective requires you to use the <span class="guideHighlight">Ectoplasm Glass</span> to search the building for an elderly lady sitting in a chair.</p>
+			<img src="imgs/guide/chair_silhouette.png" style="width: 230px; height: 230px;" alt="Silhouette" />
+		</div>
+	</div>
+</div>

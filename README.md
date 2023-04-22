@@ -4,8 +4,6 @@ A client facing web-app guide for the horror video game Demonologist.
 
 ## Copyright Notice
 
-This repository may contain some left over assets from Demonologist (used with permission) that are needed for this website to run. These assets are excluded from the license and may not be used without permission from Clock Wizard Games. 
-
 `Demonologist, the Demonologist logo, and any game related info, images, or sounds are either ® or TM, Clock Wizard Games. Any assets used  within this site are used with direct permission from Clock Wizard Games.`
 
 `The "Unofficial Demonologist Cheat Sheet" is not created by nor affiliated with Demonologist, Clock Wizard Games, its developers, or partners. This service is created by an independent third party.`

@@ -8,14 +8,11 @@
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
-    <script src="jquery/jquery-3.6.2.min.js"></script>
-    <script src="scripts-v2/ghost_template.js"></script>
-    <link rel="stylesheet" href="styles-v2/style-v2.css"/>
-    <link rel="stylesheet" href="styles-v2/style-mobile.css"/>
-    <link rel="stylesheet" href="wiki-v2/wiki.css" >
-    <link rel="stylesheet" href="events-v2/events.css" >
-    <link rel="stylesheet" href="styles-v2/sparkles.css" >
-    <link rel="stylesheet" href="pages/pages.css" />
+    <script src="Layouts/Scripts/Libs/jquery-3.6.2.min.js"></script>
+    <script src="Layouts/Scripts/ghost_template.js"></script>
+    <link rel="stylesheet" href="Layouts/Styles/main.css"/>
+    <link rel="stylesheet" href="Layouts/Styles/mobile.css"/>
+    <link rel="stylesheet" href="Layouts/Styles/pages.css" />
 </head>
 
 <body>
@@ -69,7 +66,9 @@
         <canvas id="globe"></canvas>
     </div>
 
-    <script src="scripts-v2/filter2.js"></script>
+    <script src="Layouts/Scripts/globals.js"></script>
+    <script src="Layouts/Scripts/filter.js"></script>
+    <script src="Layouts/Scripts/pages.js"></script>
     <script>
         $(window).on('load', function () {
             loadData()

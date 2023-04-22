@@ -1,0 +1,58 @@
+{
+  "cursedObjects": {
+    "ouijaBoardQuestions": [
+      "Are you here?",
+      "Where are you?"
+    ],
+
+    "tarotCards": {
+      "Aggressive": "Angers the ghost.",
+      "Angel": "Revives a dead player and grants an achievement.",
+      "Death": "Causes the ghost to hunt.",
+      "Devil": "Forces activity.",
+      "Flame of Fate": "Chance to raise or lower sanity.",
+      "Gillotine": "Kills the player.",
+      "Moon": "Decreases sanity.",
+      "Slave": "Traps the ghost.",
+      "Sun": "Restores sanity.",
+      "Void": "Causes an item to disappear."
+    }
+  },
+
+  "difficulties": {
+    "Easy": [
+      "Ghost gives 3 evidence types.",
+	  "Lights will break rarely.",
+      "Sanity pills restore 40% sanity.",
+	  "Insurance refunds 50% of your losses if you die.",
+      "With three players, awards $2500 for finding correct ghost time and completing all objectives and exorcism on the Hospital map."
+    ],
+
+    "Medium": [
+      "Ghost gives 3 evidence types.",
+	  "Lights will break sometimes.",
+      "Sanity pills restore 30% sanity.",
+	  "Insurance refunds 25% of your losses if you die.",
+      "With three players, awards $5300 for finding correct ghost time and completing all objectives and exorcism on the Hospital map."
+    ],
+
+    "Hard": [
+      "Ghost gives 3 evidence types.",
+	  "Lights will break often.",
+      "Sanity pills restore 20% sanity.",
+	  "Insurance refunds none of your losses if you die.",
+	  "Penalty for guessing the wrong ghost is 70%.",
+	  "<span class=\"ghost-note\">Sanity drops significantly faster (Seen 3x).</span>"
+    ]
+  },
+
+  "evidence": {
+    "spiritBoxQuestions": [
+      "Can you talk?",
+      "Can you speak?",
+      "What is your name?",
+      "When did you die?",
+      "Where are you?"
+    ]
+  }
+}
